@@ -25,6 +25,7 @@ def monoton(f, a, b):
     if ubi or voz:
         return True
     return False
+#
 def meth_half(f, a, b, t):
     if monoton(f, a, b):
         while True:

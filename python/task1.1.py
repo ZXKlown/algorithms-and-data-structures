@@ -1,0 +1,44 @@
+import math
+
+#функция уравнения
+def f(x):
+    return math.acos((1-x**2)/(1+x**2)) - x
+
+def monoton(f, a, b):
+    s = (b - a)/1000
+    x = a
+    y = f(x)
+    voz = True
+    ubi = True
+
+    for i in range(1000):
+        x_next = x + s
+        y_next = f(x_next)
+
+        if y_next < y:
+            voz = False
+        if y_next > y:
+                ubi = False
+
+        x = x_next
+        y = y_next
+    if ubi or voz:
+        return True
+    return False
+def meth_half(f, a, b, t):
+    if monoton(f, a, b):
+        while True:
+            x = (a + b) / 2
+
+            if abs(f(x)) < t:
+                return x
+
+            if f(x) * f(a) < 0:
+                b = x
+            else:
+                a = x
+    else:
+        raise ValueError("функция не монотонна")
+
+
+print(meth_half(f, 2, 3, 0.001))
